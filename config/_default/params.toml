@@ -16,7 +16,7 @@ doNotLoadAnimations = true
 # Form Spree Contact Form
 #contactFormAction = "https://formspree.io/f/your-form-hash-here"
 # Google Fonts
-googleFonts = ["Inter:wght@400;700", "Fira+Code:wght@400;700"]
+#googleFonts = ["Inter:wght@400;700", "Fira+Code:wght@400;700"]
 # Google Site Verify
 #googleSiteVerify = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 singleDateFormat = "02/01/2006"

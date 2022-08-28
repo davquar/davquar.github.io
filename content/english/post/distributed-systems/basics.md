@@ -16,7 +16,7 @@ No need for much imagination: we can say that a **distributed system** is compos
 
 These processes may be on different networks (as in this image) or in the same network. Each process may or may not have different roles; this depends on the protocol.
 
-![General and sciapo diagram of a distributed system](https://informaticabrutta.it/content/images/2021/01/sistema-distribuito.png)
+![General and sciapo diagram of a distributed system](/images/distributed-systems/sistema-distribuito.png)
 
 In a distributed system we don't have a central point of failure, sure, but it opens the door to a whole other set of complicated issues that need to be handled, for example:
 
@@ -46,7 +46,7 @@ In general, the goal of a distributed system is to **always proceed toward the c
 - **Safety**: the decision chosen is *always* correct.
 - **Liveness**: the protocol *always* allows a decision to be reached.
 
-As we shall see, [in the next article there is a theorem](https://informaticabrutta.it/sistemi-distribuiti-consenso/) that tells us that in an asynchronous system with crash-prone processes **it is not possible** to have both properties. As needed, there needs to be a tradeoff between the two.
+As we shall see, [in the next article there is a theorem](../consensus/) that tells us that in an asynchronous system with crash-prone processes **it is not possible** to have both properties. As needed, there needs to be a tradeoff between the two.
 
 ---
 
@@ -54,7 +54,7 @@ As we shall see, [in the next article there is a theorem](https://informaticabru
 
 Okay, let's move on to something a little more serious: how do we graphically represent a distributed computation? You can use a diagram that some people call a **space-time diagram**, which has this form:
 
-![Space-time diagram to represent a distributed computation](https://informaticabrutta.it/content/images/2021/01/diagramma-spazio-tempo.png)
+![Space-time diagram to represent a distributed computation](/images/distributed-systems/diagramma-spazio-tempo.png)
 
 At a first glance what do we understand?
 
@@ -84,17 +84,17 @@ If we combine all the local states of the processes in the system, surprise, we 
 
 A **cut** is nothing more than a particular **global state** at a particular **instant**. When we take a snapshot, we get a cut.
 
-![Cut in a synchronous system](https://informaticabrutta.it/content/images/2021/01/taglio-preciso.png)
+![Cut in a synchronous system](/images/distributed-systems/taglio-preciso.png)
 
 A cut is the **graphical representation** of the global state: everything on the left is in the state; everything on the right has not happened yet.
 
 In the image there is a very fortunate situation, that is, in which the obtained cut is accurate. This can only be achieved if the system is synchronous, that is, when all processes have a "synchronized clock" on which they can rely. But we want to deal with **asynchronous systems**, where a typical cut might look like this:
 
-![Cut in an asynchronous system](https://informaticabrutta.it/content/images/2021/01/taglio-non-coerente.png)
+![Cut in an asynchronous system](/images/distributed-systems/taglio-non-coerente.png)
 
 This cut is problematic, because it is **inconsistent**: we have captured a receive event $e_3^2$ but not the related send $e_1^3$. An inconsistent cut is a bit like a picture of an event that happened, but without the cause.
 
-![Penalty kick](https://informaticabrutta.it/content/images/2021/01/rigore.jpg)
+![Penalty kick](/images/distributed-systems/rigore.jpg)
 
 An inconsistent cut (or global inconsistent state, *inconsistent cut*) is a bit like seeing this picture, but with the ball stationary on the puck: it can't happen. The whole system is in the state where the ball has been kicked and the goalkeeper has taken a dive, but the captured photo still shows the ball stationary (*laughed*).
 
@@ -114,7 +114,7 @@ Where $send$ and $delivery$ are the send and receive events, respectively.
 
 The **causal delivery** is nothing but a **FIFO** between pairs of processes, and thus makes sure that messages are *evaluated* in the right order even at the receiving end.
 
-![Effect of causal delivery in distributed systems](https://informaticabrutta.it/content/images/2021/01/causal-delivery.png)
+![Effect of causal delivery in distributed systems](/images/distributed-systems/causal-delivery.png)
 
 ### Chandy-Lamport snapshot protocol.
 
@@ -127,7 +127,7 @@ This protocol always builds consistent snapshots, and to simplify it works like 
   - If it is the first to receive, **takes the snapshot** and **forwards** the marker to all other processes.
   - Otherwise, it stops listening to the one that sent it, and adds to the snapshot any events whose reception occurred between the previous and current marker.
 
-![Chandy-Lamport snapshot protocol](https://informaticabrutta.it/content/images/2021/01/chandy-lamport-1.png)
+![Chandy-Lamport snapshot protocol](/images/distributed-systems/chandy-lamport-1.png)
 
 The reason why this protocol always constructs consistent global states is precisely in the two assumptions:
 
@@ -136,7 +136,7 @@ The reason why this protocol always constructs consistent global states is preci
 
 In fact, it is not possible to have such a snapshot:
 
-![Chandy-Lamport snapshot protocol: effect of causal delivery](https://informaticabrutta.it/content/images/2021/01/chandy-lamport-2.png)
+![Chandy-Lamport snapshot protocol: effect of causal delivery](/images/distributed-systems/chandy-lamport-2.png)
 
 Precisely because $e'$ would be excluded from the picture, because it would be evaluated after the instant $p_1$ executes the snapshot.
 
@@ -146,7 +146,7 @@ Okay, all nice. We talked about some concepts in a somewhat abstract way: for ex
 
 Here, a cool way to do this is to use **vector clocks**, that is, an efficient system for labeling events in such a way that the order is unique and understandable among different processes. We can see vector clocks as a **timestamp** mechanism.
 
-![Timestamp with vector clocks of events in a distributed system](https://informaticabrutta.it/content/images/2021/01/vector-clocks.png)
+![Timestamp with vector clocks of events in a distributed system](/images/distributed-systems/vector-clocks.png)
 
 It is easier to infer the rules by looking at the image instead of formally writing them down, but still each process:
 
@@ -187,9 +187,3 @@ This led us to the concept of **cutting** and **coherence**.
 We saw a protocol for getting **always consistent snapshots**, which was brought up by two little people called **Chandy** and **Lamport**.
 
 Finally we saw a real mechanism for labeling events by **vector clock**, and some interesting properties.
-
-Future articles will cover the topic of **[distributed consensus](https://informaticabrutta.it/sistemi-distribuiti-consenso/)**.
-
----
-
-*If you have any questions or just want to say something, please leave a comment below. If you also want to stay up-to-date on new material find a form to sign up for newsletters.*

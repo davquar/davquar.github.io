@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: Self-hosting Matomo with Docker
-date: 2021-08-14
+date: 2020-04-07
 description: Matomo is a viable alternative to Google Analytics as an ethical and privacy-oriented web analytics tool. In this post we see how to install it with Docker, alongside MariaDB and a couple of nginx-related containers.
 ---
 

@@ -2,9 +2,12 @@
 author: Davide Quaranta
 title: "Basics of Distributed Systems theory"
 date: 2021-01-23
-categories: [distributed systems]
+categories: [distributed-systems]
 tags: [consensus, vector-clock, snapshot, lamport]
 description: "Let's see the concept of consensus in distributed systems: what it is, why it is complex, when and if it is possible. We'll see a protocol for achieving atomic commit, and finally we prove the FLP theorem."
+toc: true
+series:
+  - series-ds-course
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.

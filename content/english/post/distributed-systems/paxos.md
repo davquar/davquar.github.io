@@ -2,14 +2,17 @@
 author: Davide Quaranta
 title: "Paxos: a distributed consensus protocol"
 date: 2021-04-13
-categories: [distributed systems]
+categories: [distributed-systems]
 tags: [consensus, paxos]
 description: "Let's look at Paxos: a beautiful and fundamental safe, but not live, distributed consensus protocol. Let's see how it works, what the main elements are, and have some examples."
+toc: true
+series:
+  - series-ds-course
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
 
-In the last article we looked at the topic of **[consensus](https://informaticabrutta.it/sistemi-distribuiti-consenso/)** and understood why it is important complex; we looked at the concepts of safety and liveness, gave some examples, and then left off by saying that in the next article (this one) we would look at **Paxos**.
+In the last article we looked at the topic of **[consensus](/distributed-consensus/)** and understood why it is important complex; we looked at the concepts of safety and liveness, gave some examples, and then left off by saying that in the next article (this one) we would look at **Paxos**.
 
 **Paxos is a protocol for reaching consensus in distributed systems; it is safe but not live, and it does not tolerate byzantine nodes**. It was invented by that <s>crazy</s> genius Leslie Lamport and given to the world in a paper titled [The Part-Time Parliament](https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf), in the form of a fake archaeological survey of an invented Greek island called Paxos (which then really exists).
 

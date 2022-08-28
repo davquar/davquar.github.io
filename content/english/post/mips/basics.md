@@ -5,6 +5,7 @@ date: 2018-08-01
 categories: [computer-architecture]
 tags: [mips, assembly, asm]
 description: "We have a fairly dense post in front of us, in which we will see the basics of programming in MIPS assembly. By the end of the guide we will be able to do quite a bit (such as operating on vectors and matrices), and also ready to tackle recursion."
+toc: true
 ---
 
 This post has been written after attending the Computer Architectures course by prof. Andrea Sterbini at Sapienza University of Rome; contents are heavily based on that course.

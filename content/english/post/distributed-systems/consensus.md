@@ -2,12 +2,12 @@
 author: Davide Quaranta
 title: "Distributed Consensus, Atomic Commit and FLP Theorem"
 date: 2021-01-27
-categories: [distributed-systems]
+categories: [Distributed Systems]
 tags: [consensus, atomic-commit, flp-theorem]
 description: "Let's see the concept of consensus in distributed systems: what it is, why it is complex, when and if it is possible. We'll see a protocol for achieving atomic commit, and finally we prove the FLP theorem."
 toc: true
 series:
-  - series-ds-course
+  - Distributed Systems Theory
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.

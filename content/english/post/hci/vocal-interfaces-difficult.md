@@ -2,8 +2,8 @@
 author: Davide Quaranta
 title: Creating vocal interfaces is difficult
 date: 2021-11-08
-categories: [hci]
-tags: [opinion]
+categories: [HCI]
+tags: [vocal-interfaces, speech2text, multimodal-interaction]
 description: Why is it so complex to create a good voice interface? There are many factors that affect the quality and usability of the final product. There are many variables involved, and the technology choices are decisive. Let's see why.
 toc: true
 ---

@@ -2,12 +2,12 @@
 author: Davide Quaranta
 title: "Basics of Distributed Systems theory"
 date: 2021-01-23
-categories: [distributed-systems]
+categories: [Distributed Systems]
 tags: [consensus, vector-clock, snapshot, lamport]
 description: "Let's see the concept of consensus in distributed systems: what it is, why it is complex, when and if it is possible. We'll see a protocol for achieving atomic commit, and finally we prove the FLP theorem."
 toc: true
 series:
-  - series-ds-course
+  - Distributed Systems Theory
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
@@ -27,7 +27,7 @@ In a distributed system we don't have a central point of failure, sure, but it o
 
 This brings us to a very simple classification of processes and systems.
 
-## Taxonomy systems and processes.
+## Taxonomy systems and processes
 
 A system can be:
 
@@ -39,7 +39,7 @@ As for processes, we can classify them by the ways they can fail:
 - **Crash-faulty**: they can crash.
 - **Bizantine**: buggy or malicious; unreliable.
 
-## Objective.
+## Objective
 
 In general, the goal of a distributed system is to **always proceed toward the correct decision**, which results in two properties that determine the efficiency of the protocols used:
 
@@ -103,7 +103,7 @@ Among friends, *if in the cut you have the receiving event, you must also have t
 
 ---
 
-## Consistent snapshots thanks to Chandy and Lamport.
+## Consistent snapshots thanks to Chandy and Lamport
 
 Okay, how can we make **snapshots always consistent**? There is the nice **Chandy-Lamport** protocol that guarantees us that, assuming:
 
@@ -116,7 +116,7 @@ The **causal delivery** is nothing but a **FIFO** between pairs of processes, an
 
 ![Effect of causal delivery in distributed systems](/images/distributed-systems/causal-delivery.png)
 
-### Chandy-Lamport snapshot protocol.
+### Chandy-Lamport snapshot protocol
 
 This protocol always builds consistent snapshots, and to simplify it works like this:
 

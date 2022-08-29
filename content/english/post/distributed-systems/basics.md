@@ -16,7 +16,7 @@ No need for much imagination: we can say that a **distributed system** is compos
 
 These processes may be on different networks (as in this image) or in the same network. Each process may or may not have different roles; this depends on the protocol.
 
-![General and sciapo diagram of a distributed system](/images/distributed-systems/sistema-distribuito.png)
+![General and sciapo diagram of a distributed system](/images/distributed-systems/distributed-system.png)
 
 In a distributed system we don't have a central point of failure, sure, but it opens the door to a whole other set of complicated issues that need to be handled, for example:
 

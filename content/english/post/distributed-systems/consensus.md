@@ -49,8 +49,6 @@ Fine. Is there a protocol for resolving atomic commit? Yes, and it is the **two-
 
 ### 2-phase-commit (2PC)
 
-![2-phase-commit (2PC) activity diagram](/images/distributed-systems/2pc.png)
-
 The protocol works like this:
 
 - The **coordinator** sends a vote request to all **participants**.

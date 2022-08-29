@@ -8,9 +8,9 @@ description: Why is it so complex to create a good voice interface? There are ma
 toc: true
 ---
 
-What is a voice interface? Or Vocal UI to put it more coolly?
+What is a voice interface? Or Vocal UI to put it in a cooler way?
 
-It's a type of interface that the user doesn't see, instead they listen and interact with it by using their voice. Examples might be Cortana, Alexa, Siri, Google Coso, or anything that is voice-activated and responds to you with lots of voice.
+It's a type of interface that the user doesn't see, instead they listen and interact with it by using their voice. Examples might be Cortana, Alexa, Siri, or anything that is voice-activated and responds to you with lots of voice.
 
 As interesting as the idea of having a virtual assistant that talks and listens may be, building such an interface is not so easy. Or rather, it is (relatively) easy if your goal is easy, but it gets very complicated as the complexity of the *tasks* you want to accomplish increases.
 

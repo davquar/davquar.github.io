@@ -2,7 +2,7 @@
 author: Davide Quaranta
 title: "Basics of MIPS Assembly"
 date: 2018-08-01
-categories: [computer-architecture]
+categories: [Computer Architecture]
 tags: [mips, assembly, asm]
 description: "We have a fairly dense post in front of us, in which we will see the basics of programming in MIPS assembly. By the end of the guide we will be able to do quite a bit (such as operating on vectors and matrices), and also ready to tackle recursion."
 toc: true
@@ -22,15 +22,13 @@ Here is a roadmap of what we will see today:
 
 Programming in assembly is a totally different experience than programming with any high-level language. We have direct access to registers, and we can optimize (or make worse) code with a high level of precision.
 
-In the parallel series of articles on theory we will take a closer look at this aspect of optimization, but I anticipate on the fly that it mainly concerns instruction ordering.
-
-In this series of articles we will use [MARS](http://courses.missouristate.edu/KenVollmar/MARS/): a MIPS IDE that also integrates a simulator.
+In this post we will use [MARS](http://courses.missouristate.edu/KenVollmar/MARS/): a MIPS IDE that also integrates a simulator.
 
 Without wasting any more time on small talk, let's get started.
 
 ## Registers
 
-As anticipated earlier, in assembly we have direct access to registers. In particular, we have 31 registers (plus those with floating-point junk), which conventionally are used to do distinct things. We can actually use all of them as we like, but we would be making our code out of line with convention, and we would risk confusing or complicating our lives.
+In assembly we have direct access to registers. In particular, we have 31 registers (plus those about floating-point data), which conventionally are used to do specific things.
 
 Here are the standard MIPS registers:
 
@@ -60,9 +58,9 @@ A couple of notes:
 - The difference between preserved and non-preserved data between functions is only conventional, and does not concern behavior that happens automatically. To give an example, it means that *by convention* you should not use temporary registers to save or pass data between functions;
 - The register with the constant `$zero` exists because it is very useful.
 
-### Examples.
+### Examples
 
-Before we get on with the formats, let's see some examples of instructions in ASM MIPS involving registers on the fly:
+Before we get on with the formats, let's see some examples of instructions in ASM MIPS involving registers:
 
 ```
 # $t0 = $t0 + $t1
@@ -209,7 +207,7 @@ When executed, the program does this:
 
 The rest is quite understandable having analyzed what happens before. We end execution with the `10` syscall.
 
-## Directives to the assembler.
+## Directives to the assembler
 
 We saw a couple of these a little while ago, and now we explain them in general. With directives we tell the assembler:
 
@@ -277,7 +275,7 @@ takeInt ($s0)
 
 Nice.
 
-## Let's stop for a moment.
+## Let's stop for a moment
 
 Before we move on to jumps (which are super cute), we have to deal with something boring and ugly, but we need it to understand why in MIPS we can't do virtuous things like `lw $t0($t1)`, and also to understand what that *i* means in instructions like `adds`, `subs`, `mules`, etc.
 
@@ -290,11 +288,11 @@ So I would say take a break, where you do some exercises to consolidate these fe
   - Their product;
   - Their sum + 42.
 
-## Formats of Instructions.
+## Instructions format
 
 Here we go again.
 
-This part goes hand in hand with the [single-clock-cycle MIPS CPU scheme](https://informaticabrutta.it/cpu-mips-un-colpo-clock/), so if you haven't seen it yet I suggest you do it about now.
+~~This part goes hand in hand with the [single-clock-cycle MIPS CPU scheme](../cpu-1-clock-cycle), so if you haven't seen it yet I suggest you do it about now.~~ (I have not translated the article yet)
 
 We should know that the instructions we use in ASM MIPS are an abstraction that masks us writing sequences of bits; at a low level, in fact, an instruction is a sequence of bits that is fed to the CPU.
 
@@ -377,7 +375,7 @@ The `jal` saves the contents of the `program counter (PC)` in `$ra`, and is used
 
 ### Branch
 
-Branches (or branches) are those that in a high-level language correspond to **if**.
+Branches are those that in a high-level language correspond to **if**.
 
 In MIPS we do not have the same flexibility of that type of construct, but it is much more rudimentary. The syntax here is:
 
@@ -400,10 +398,9 @@ There are branches in which `0` is compared, and they have a more compact syntax
 | `beqz`      | Branch if equal to zero     | `beqz $t0, label`     |
 | `bnez`      | Branch if not equal to zero | `bne $t0, label`      |                     |
 
-*Can you think of a way to use a branch to always jump?
-*First one to respond well in the comments wins a sandwich.
+* Can you think of a way to use a branch to always jump?
 
-PRO TIP: Saved the [MIPS Reference Card](http://www.cburch.com/cs/330/reading/mips-ref.pdf).
+PRO TIP: Save the [MIPS Reference Card](http://www.cburch.com/cs/330/reading/mips-ref.pdf).
 
 ## Cycles
 
@@ -414,7 +411,7 @@ Depending on the type of loop we want, we have patterns.
 Some notes:
 
 - I use `branch` as a placeholder for `beq`, `bne`, etc.;
-- I use dummy labels (such as `do`, `while`, `for`) to show similarities, but you can (read "must") use unique, context-appropriate labels.
+- I use dummy labels (such as `do`, `while`, `for`) to show similarities, but you can use unique, context-appropriate labels.
 
 #### Do-While
 
@@ -498,8 +495,6 @@ Again, here are some ideas:
   - If the character is uppercase *(same hint)*, add its *integer value* to a comulative sum;
   - When finished, print the comulative sum.
 
-*When you solve the exercises (even if you like), put them on GitHub and link them in the comments ;)*
-
 ## Vectors and Matrices.
 
 A vector is a data structure in which there is contiguous data of the same length. They are easily imagined in memory as a chopped segment.
@@ -557,16 +552,4 @@ M[x][y] <=> M + y*Y + x*sizeof(int)
 
 MIPS is nice, isn't it?
 
-With this article we have learned the basics of programming in MIPS assembly, and we have all we need to move on to the next stage, where we will look at slightly more virtuous stuff: we will play with the stack and **recursion**.
-
-Before we move on to the next article (when it comes out), I recommend that you:
-
-- Become familiar with MARS, especially with the debugger;
-- Be clear on patterns for creating loops;
-- Be clear on how to operate on vectors.
-
-A welcome extra is to experiment with macros.
-
-If you want to be cool, try your hand at branch reduction: restructure your code to avoid unnecessary branches.
-
-*As always, if you have questions use the comments. If you have solved or want to come up with some exercises/examples, put them in a repo on GitHub and report it in the comments.*
+If you want to be cool, try doing some branch reduction if needed: restructure your code to avoid unnecessary branches.

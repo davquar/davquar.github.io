@@ -2,17 +2,17 @@
 author: Davide Quaranta
 title: "Paxos: a distributed consensus protocol"
 date: 2021-04-13
-categories: [distributed-systems]
+categories: [Distributed Systems]
 tags: [consensus, paxos]
 description: "Let's look at Paxos: a beautiful and fundamental safe, but not live, distributed consensus protocol. Let's see how it works, what the main elements are, and have some examples."
 toc: true
 series:
-  - series-ds-course
+  - Distributed Systems Theory
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
 
-In the last article we looked at the topic of **[consensus](/distributed-consensus/)** and understood why it is important complex; we looked at the concepts of safety and liveness, gave some examples, and then left off by saying that in the next article (this one) we would look at **Paxos**.
+In the last article we looked at the topic of **[consensus](../consensus/)** and understood why it is important complex; we looked at the concepts of safety and liveness, gave some examples, and then left off by saying that in the next article (this one) we would look at **Paxos**.
 
 **Paxos is a protocol for reaching consensus in distributed systems; it is safe but not live, and it does not tolerate byzantine nodes**. It was invented by that <s>crazy</s> genius Leslie Lamport and given to the world in a paper titled [The Part-Time Parliament](https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf), in the form of a fake archaeological survey of an invented Greek island called Paxos (which then really exists).
 
@@ -24,11 +24,11 @@ Basically Leslie came up with a fake archaeological research paper on a nonexist
 
 This - in part - is one reason why Paxos is so feared and misunderstood. In this article we try to understand it.
 
-## How Paxos works.
+## How Paxos works
 
 Paxos is a protocol for reaching consensus on a value, and maintaining it as long as the protocol is running. The nodes participating in Paxos can have different roles, and the execution of the protocol is divided into shifts. Let's take a closer look.
 
-### Roles of processes.
+### Roles of processes
 
 We have three types of nodes:
 
@@ -38,7 +38,7 @@ We have three types of nodes:
 
 Okay, this is a very broad description; now we will take a closer look at how they interact with each other. 
 
-### Protocol execution.
+### Protocol execution
 
 Orientatively, Paxos works like this:
 
@@ -186,7 +186,7 @@ On the next round only one failed acceptor remains, all is well, and the chosen 
 
 Perfect.
 
-## Safety.
+## Safety
 
 We said at the beginning that Paxos is **safe** but not live. Let us see why it is safe, that is, that whatever choice the protocol makes is correct; in other words, it is not possible that in a round $r'>r$ it turns out that the acceptor value chosen in round $r$ is wrong.
 
@@ -200,7 +200,7 @@ If $j=-$ it means that no one voted; more formally, it means that $\forall j \le
 
 In this case it is **safe** to do an $accept(i,v)$.
 
-### Someone voted.
+### Someone voted
 
 If $j\ge1$ means that someone voted. If $i$ is the current round (and $j\le i$), the nodes that voted in this round have sent a $promise(i,lr,lv)$ and have thus also promised to ignore any vacant messages referring to rounds $i'<i$.
 
@@ -237,7 +237,7 @@ This avoids those scenarios where the proposers spite each other, which results 
 
 Of course, electing a coordinator (**leader election**) is itself a form of consensus, so we bite each other's tails. What is generally done is to use a **weak protocol** to choose the leader, i.e., a protocol that does not have to be safe, but that suits us anyway in relation to our goal, i.e., it certainly elevates a proposer to coordinator.
 
-### Role flexibility.
+### Role flexibility
 
 Two final words about Paxos concern roles. Earlier we saw that there are the roles of:
 
@@ -249,9 +249,9 @@ If we allow for the variation seen just now, we also have a Coordinator.
 
 Fine, but we must say that in Paxos the roles are flexible, that is, at different times of the turn a node can also take on other roles. For example, the special proposer of a certain turn, may also be one of the acceptors, and surely he will also be a learner.
 
-## Conclusion.
+## Conclusion
 
-Dude, we looked at Paxos and framed it within the larger context of consensus in distributed systems. We've seen how it works, what the roles of the nodes are, and what messages are exchanged and why; we've given some examples, and seen why it is safe but not live.
+We looked at Paxos and framed it within the larger context of consensus in distributed systems. We've seen how it works, what the roles of the nodes are, and what messages are exchanged and why; we've given some examples, and seen why it is safe but not live.
 
 There are some extensions to Paxos, like the one with the coordinator, but also interesting stuff like Multi-Paxos, which is an environment in which multiple instances of Paxos are run, for example to handle consensus on a sequence of values.
 

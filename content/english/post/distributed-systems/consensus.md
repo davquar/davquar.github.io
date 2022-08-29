@@ -2,25 +2,25 @@
 author: Davide Quaranta
 title: "Distributed Consensus, Atomic Commit and FLP Theorem"
 date: 2021-01-27
-categories: [distributed-systems]
+categories: [Distributed Systems]
 tags: [consensus, atomic-commit, flp-theorem]
 description: "Let's see the concept of consensus in distributed systems: what it is, why it is complex, when and if it is possible. We'll see a protocol for achieving atomic commit, and finally we prove the FLP theorem."
 toc: true
 series:
-  - series-ds-course
+  - Distributed Systems Theory
 ---
 
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
 
 In the context of distributed systems, **consensus** is a key issue. If we have *n* processes running the same protocol, consensus means that they all have to **agree on the same decision**.
 
-But in the [previous article](https://informaticabrutta.it/sistemi-distribuiti-introduzione/) we saw that processes can **fail**, in particular they can go into **crash** or be **bizantine**. That is why ensuring consensus is not at all easy: how do we get everyone to agree if some trial always dies?  Can we continue even if a percentage of trials die? How do we notify resurrected dead trials of previous decisions? Does it need to be done? What happens if too many nodes fail?
+But in the [previous article](../basics/) we saw that processes can **fail**, in particular they can go into **crash** or be **bizantine**. That is why ensuring consensus is not at all easy: how do we get everyone to agree if some trial always dies?  Can we continue even if a percentage of trials die? How do we notify resurrected dead trials of previous decisions? Does it need to be done? What happens if too many nodes fail?
 
 In short, there are a number of questions we can't answer right now, but as we proceed with this article and subsequent ones, we will have a clearer idea and be able to give ourselves answers.
 
-The **consensus** is all over the place: when two clients edit a Google document together, there is some consensus protocol underneath; when we use services to replicate databases, there is some consensus protocol; when we surf around the Internet and content is served to us by a [CDN](https://informaticabrutta.it/cdn-content-delivery-networks/), it runs some consensus protocol.
+The **consensus** is all over the place: when two clients edit a Google document together, there is some consensus protocol underneath; when we use services to replicate databases, there is some consensus protocol; when we surf around the Internet and content is served to us by a CDN, it runs some consensus protocol.
 
-Okay, nice talk, but what does **consent** mean in practice?
+Okay, nice talk, but what does **consensus** mean in practice?
 
 Here, an example of a consensus problem is the so-called **atomic commit**, which is a decision that we want to think of as atomic, but is actually composed of several operations. For example, if we are several people and we want to choose one pizza to order we might all propose one type, but in the end what is important is **to arrive at a single decision** to communicate to the waiter.
 
@@ -47,9 +47,7 @@ In addition, we have some properties:
 
 Fine. Is there a protocol for resolving atomic commit? Yes, and it is the **two-phase-commit**.
 
-### 2-phase-commit (2PC).
-
-![2-phase-commit (2PC) activity diagram](https://informaticabrutta.it/content/images/2021/01/2pc.png)
+### 2-phase-commit (2PC)
 
 The protocol works like this:
 
@@ -69,15 +67,15 @@ What are the possible **problems** of this protocol?
 
 To deal with the problem of coordinator weakness as a central point of failure, we can use the **cooperative termination protocol**, which is a stratagem to make the protocol terminate in a certain situation.
 
-### Cooperative termination protocol.
+### Cooperative termination protocol
 
 Let's imagine a situation where the coordinator fails before sending the final decision.
 
-![Scenario in 2PC where the coordinator fails before sending the final decision](https://informaticabrutta.it/content/images/2021/01/2pc-crash-coordinator.png)
+![Scenario in 2PC where the coordinator fails before sending the final decision](/images/distributed-systems/2pc-crash-coordinator.png)
 
 The protocol **will not terminate** because all nodes will never receive the final decision because the coordinator fails before sending it. There is little to be done here. Let's examine a case where **something can be done**.
 
-![Scenario in which we use the cooperative termination protocol along with the 2PC to propagate the final decision](https://informaticabrutta.it/content/images/2021/01/2pc-cooperative-termination-protocol.png)
+![Scenario in which we use the cooperative termination protocol along with the 2PC to propagate the final decision](/images/distributed-systems/2pc-cooperative-termination-protocol.png)
 
 In this situation, the coordinator fails immediately after sending the final decision to at least one node; we then realize that something can be done: all that is needed is for this lucky node to propagate the decision to all its little friends.
 
@@ -106,7 +104,7 @@ Simple, right?
 
 We conclude this article by finally explaining why I say here and in the previous article that consensus cannot be reached under certain conditions.
 
-## FLP Theorem.
+## FLP Theorem
 
 There is a beautiful theorem named after its inventors-Michael Fischer, Nancy Lynch, and Michael Patterson. This theorem is also called **FLP impossibility result**, and essentially says that:
 
@@ -114,7 +112,7 @@ There is a beautiful theorem named after its inventors-Michael Fischer, Nancy Ly
 
 This seems a little strange, since earlier we saw a simple deterministic protocol to achieve atomic commit, which is a form of consensus; we also showed that in certain situations the protocol can terminate even if there is some crash. So why do we say that consensus cannot be achieved?
 
-Well, because you have to understand that these three people defined the concept of **consensus** with two properties: **safety** and **liveness**. Specifically, when we say "**reach consent**" we are implicitly saying that we do so in a **safe** and **live** way.
+Well, because you have to understand that these three people defined the concept of **consensus** with two properties: **safety** and **liveness**. Specifically, when we say "**reach consensus**" we are implicitly saying that we do so in a **safe** and **live** way.
 
 In simple words, these two properties mean:
 
@@ -131,14 +129,14 @@ We can convince ourselves of this with a small **demonstration**: suppose we hav
 
 If we admit the possibility of having even **one crash**, two things can happen:
 
-![Graphical demonstration of the FLP theorem, highlighting the consequences on safety and liveness](https://informaticabrutta.it/content/images/2021/01/flp-theorem-safety-liveness.png)
+![Graphical demonstration of the FLP theorem, highlighting the consequences on safety and liveness](/images/distributed-systems/flp-theorem-safety-liveness.png)
 
 - In the first case, one process changes its value but fails before the other can notice; at this point the living process remains **locked** because it does not know which is the correct choice. **We then sacrifice liveness to remain safe**.
 - In the second case the process fails before the other can realize it, but this one **doesn't care** and keeps his value in the name of progress; too bad that after a while the dead man resurrects and they find they are at odds. We **sacrificed safety to stay alive**.
 
 Nice huh?
 
-## Conclusion.
+## Conclusion
 
 With this second part, we addressed the issue of consensus and understood why it is critical; we asked and answered questions and realized that if nodes die and we are in an asynchronous system, it is difficult to achieve consensus in both safe and live ways.
 

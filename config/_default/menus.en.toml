@@ -10,6 +10,12 @@
   identifier = "blog"
   url = "/post/"
 
+  [[main]]
+  name = "Categories"
+  weight = 200
+  identifier = "categories"
+  url = "/categories/"
+
   # [[main]]
   # name = "Portfolio"
   # weight = 300

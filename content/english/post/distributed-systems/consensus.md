@@ -142,8 +142,4 @@ With this second part, we addressed the issue of consensus and understood why it
 
 For example, the Proof-of-Work mechanism that Bitcoin uses to determine consensus on a block is both non-safe and non-live, but it succeeds in both with high probability (it is in fact non-deterministic, but probabilistic).
 
-In the next article we will look at Paxos, which is safe but not live instead.
-
----
-
-***If you have questions or generally want to say something, post a comment :pencil:. Ah, if you know someone to whom this stuff can be useful, send it to them eh :thumbsup:***
+In the next article we will look at Paxos, which instead is safe but not live.

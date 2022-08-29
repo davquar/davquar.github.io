@@ -4,7 +4,7 @@ title: "Basics of Distributed Systems theory"
 date: 2021-01-23
 categories: [Distributed Systems]
 tags: [consensus, vector-clock, snapshot, lamport]
-description: "Let's see the concept of consensus in distributed systems: what it is, why it is complex, when and if it is possible. We'll see a protocol for achieving atomic commit, and finally we prove the FLP theorem."
+description: "In this introductory post on distributed systems we'll see some basic concepts such as: local and global states, consistent and inconsistent cuts, vector clocks, Chandy-Lamport's snapshot protocol."
 toc: true
 series:
   - Distributed Systems Theory

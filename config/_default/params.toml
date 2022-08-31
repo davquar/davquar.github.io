@@ -39,8 +39,8 @@ reversepagetitle = true # When set to 'true', the Window Title will be reversed 
 # serverURL = "https://analytics.example.com"
 
 [umami]
-# serverURL = "example.com"
-# id = "94db1cb1-74f4-4a40-ad6c-962362670409"
+serverURL = "stats.informaticabrutta.it"
+id = "ba98e0ea-becc-460f-b2ad-1c06f5ac1746"
 
 ## Math settings
 [math]

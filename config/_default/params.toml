@@ -41,6 +41,7 @@ reversepagetitle = true # When set to 'true', the Window Title will be reversed 
 [umami]
 serverURL = "stats.informaticabrutta.it"
 id = "ba98e0ea-becc-460f-b2ad-1c06f5ac1746"
+trackerScriptName = "saporito"
 
 ## Math settings
 [math]

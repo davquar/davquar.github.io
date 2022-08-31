@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: "Basics of Distributed Systems theory"
-date: 2021-01-23
+date: 2021-01-23T00:00:00Z
 categories: [Distributed Systems]
 tags: [consensus, vector-clock, snapshot, lamport]
 description: "In this introductory post on distributed systems we'll see some basic concepts such as: local and global states, consistent and inconsistent cuts, vector clocks, Chandy-Lamport's snapshot protocol."

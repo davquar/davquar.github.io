@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: "Paxos: a distributed consensus protocol"
-date: 2021-04-13
+date: 2021-04-13T00:00:00Z
 categories: [Distributed Systems]
 tags: [consensus, paxos]
 description: "Let's look at Paxos: a beautiful and fundamental safe, but not live, distributed consensus protocol. Let's see how it works, what the main elements are, and have some examples."

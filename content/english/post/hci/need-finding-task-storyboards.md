@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: Need finding, tasks and storyboards in HCI
-date: 2019-05-08
+date: 2019-05-08T00:00:00Z
 categories: [HCI]
 tags: [task, storyboarding, need-finding]
 description: Need finding is a fundamental activity in user interface design, because it allows us to understand our users and their needs. With this post we see how to conduct it, and what it consists of.

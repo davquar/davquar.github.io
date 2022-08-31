@@ -182,7 +182,7 @@ For each task we are interested in a **scenario**, namely:
 
 We can graphically represent this information with a **storyboard**, that is, a silly little drawing that describes the general idea of the task.
 
-![A very simple storyboard](/images/hci/esempio-storyboard-task.jpg)
+![A very simple storyboard](/images/post/hci/esempio-storyboard-task.jpg)
 
 The **storyboards** must be:
 

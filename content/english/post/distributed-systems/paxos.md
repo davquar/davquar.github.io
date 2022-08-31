@@ -57,7 +57,7 @@ Okay, let's look at an example.
 
 #### Example 1
 
-![Paxos example](/images/distributed-systems/esempio-paxos-1.png)
+![Paxos example](/images/post/distributed-systems/esempio-paxos-1.png)
 
 Let us first understand what is in the image:
 
@@ -108,7 +108,7 @@ The same check is done by the **learners** before storing the value sent to them
 
 Suppose we continue from where we left off in the previous example. The vote is successful, and the second proposer starts a new round.
 
-![Example Paxos 2](/images/distributed-systems/paxos-esempio-2.png)
+![Example Paxos 2](/images/post/distributed-systems/paxos-esempio-2.png)
 
 Let's reason:
 
@@ -144,11 +144,11 @@ Now let's look at an example where something splits.
 
 #### Example 3
 
-![Example Paxos 3](/images/distributed-systems/paxos-esempio-3.png)
+![Example Paxos 3](/images/post/distributed-systems/paxos-esempio-3.png)
 
 Here an acceptor dies and remains dead for the entire turn. The vote is still successful because there is a **quorum**. The interesting thing happens in the next turn, when this dead acceptor wakes up; let's see what he says.
 
-![Example Paxos 3, continued](/images/distributed-systems/paxos-esempio-3-1.png)
+![Example Paxos 3, continued](/images/post/distributed-systems/paxos-esempio-3-1.png)
 
 In turn 3 he was dead, in turn 4 he awakens and participates in the vote. At this point he will be the only node that in the $promise$ will say he last voted in another round, but nothing changes:
 
@@ -159,11 +159,11 @@ In turn 3 he was dead, in turn 4 he awakens and participates in the vote. At thi
 
 Let us now see what happens when there are dead nodes in the first round.
 
-![Example Paxos 4](/images/distributed-systems/paxos-esempio-4.png)
+![Example Paxos 4](/images/post/distributed-systems/paxos-esempio-4.png)
 
 Two acceptors fail and stay down for the entire turn. The others quietly vote the $5 value. A quorum is there, and all is well.
 
-![Example Paxos 4, continuous](/images/distributed-systems/paxos-esempio-4-1.png)
+![Example Paxos 4, continuous](/images/post/distributed-systems/paxos-esempio-4-1.png)
 
 On the next round they wake up and participate in the voting, and we are not surprised to see that all is well anyway:
 
@@ -176,11 +176,11 @@ Funny, isn't it?
 
 Now that we've gotten good, let's look at a slightly more broken case.
 
-![Paxos Example 5](/images/distributed-systems/paxos-esempio-5.png)
+![Paxos Example 5](/images/post/distributed-systems/paxos-esempio-5.png)
 
 Two acceptors die before receiving $prepare$, and another dies before receiving $accept$. There is no longer a quorum, so the value $5$ is not written.
 
-![Paxos example 5, continuous](/images/distributed-systems/paxos-esempio-5-1.png)
+![Paxos example 5, continuous](/images/post/distributed-systems/paxos-esempio-5-1.png)
 
 On the next round only one failed acceptor remains, all is well, and the chosen value is finally recorded.
 
@@ -219,7 +219,7 @@ It is easy to see that Paxos **is not live**, i.e., that there are instances whe
 
 In fact, this can happen:
 
-![Lack of liveness in Paxos](/images/distributed-systems/paxos-liveness.png)
+![Lack of liveness in Paxos](/images/post/distributed-systems/paxos-liveness.png)
 
 What happens if a proposer sends a $prepare(r)$ during the vote for the previous round?
 

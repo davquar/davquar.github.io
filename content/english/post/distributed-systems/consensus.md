@@ -71,11 +71,11 @@ To deal with the problem of coordinator weakness as a central point of failure, 
 
 Let's imagine a situation where the coordinator fails before sending the final decision.
 
-![Scenario in 2PC where the coordinator fails before sending the final decision](/images/distributed-systems/2pc-crash-coordinator.png)
+![Scenario in 2PC where the coordinator fails before sending the final decision](/images/post/distributed-systems/2pc-crash-coordinator.png)
 
 The protocol **will not terminate** because all nodes will never receive the final decision because the coordinator fails before sending it. There is little to be done here. Let's examine a case where **something can be done**.
 
-![Scenario in which we use the cooperative termination protocol along with the 2PC to propagate the final decision](/images/distributed-systems/2pc-cooperative-termination-protocol.png)
+![Scenario in which we use the cooperative termination protocol along with the 2PC to propagate the final decision](/images/post/distributed-systems/2pc-cooperative-termination-protocol.png)
 
 In this situation, the coordinator fails immediately after sending the final decision to at least one node; we then realize that something can be done: all that is needed is for this lucky node to propagate the decision to all its little friends.
 
@@ -129,7 +129,7 @@ We can convince ourselves of this with a small **demonstration**: suppose we hav
 
 If we admit the possibility of having even **one crash**, two things can happen:
 
-![Graphical demonstration of the FLP theorem, highlighting the consequences on safety and liveness](/images/distributed-systems/flp-theorem-safety-liveness.png)
+![Graphical demonstration of the FLP theorem, highlighting the consequences on safety and liveness](/images/post/distributed-systems/flp-theorem-safety-liveness.png)
 
 - In the first case, one process changes its value but fails before the other can notice; at this point the living process remains **locked** because it does not know which is the correct choice. **We then sacrifice liveness to remain safe**.
 - In the second case the process fails before the other can realize it, but this one **doesn't care** and keeps his value in the name of progress; too bad that after a while the dead man resurrects and they find they are at odds. We **sacrificed safety to stay alive**.

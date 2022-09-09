@@ -64,3 +64,8 @@ url = "https://github.com/davquar/"
 icon = "fas fa-envelope"
 title = "e-mail"
 url = "mailto:kapgzngeq@mozmail.com"
+
+[[socialIcons]]
+icon = "fas fa-square-rss"
+title = "feed"
+url = "/index.xml"

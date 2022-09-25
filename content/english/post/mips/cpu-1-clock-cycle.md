@@ -8,7 +8,9 @@ description: "The MIPS architecture is of type RISC and originated in 1981 from 
 toc: true
 ---
 
+{{% notice info %}}
 This post has been originally written in Italian and then automatically translated, after attending the Computer Architectures course by prof. Andrea Sterbini at Sapienza University of Rome, thus contents are heavily based on that course.
+{{% /notice %}}
 
 In this post we will see and comment the schematic of the single clock cycle MIPS CPU, to understand what certain functional units are used for.
 

@@ -8,7 +8,9 @@ description: "We have a fairly dense post in front of us, in which we will see t
 toc: true
 ---
 
+{{% notice info %}}
 This post has been originally written in Italian and then automatically translated, after attending the Computer Architectures course by prof. Andrea Sterbini at Sapienza University of Rome, thus contents are heavily based on that course.
+{{% /notice %}}
 
 Here is a roadmap of what we will see today:
 

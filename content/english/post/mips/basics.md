@@ -8,7 +8,7 @@ description: "We have a fairly dense post in front of us, in which we will see t
 toc: true
 ---
 
-This post has been written after attending the Computer Architectures course by prof. Andrea Sterbini at Sapienza University of Rome; contents are heavily based on that course.
+This post has been originally written in Italian and then automatically translated, after attending the Computer Architectures course by prof. Andrea Sterbini at Sapienza University of Rome, thus contents are heavily based on that course.
 
 Here is a roadmap of what we will see today:
 
@@ -292,7 +292,7 @@ So I would say take a break, where you do some exercises to consolidate these fe
 
 Here we go again.
 
-~~This part goes hand in hand with the [single-clock-cycle MIPS CPU scheme](../cpu-1-clock-cycle), so if you haven't seen it yet I suggest you do it about now.~~ (I have not translated the article yet)
+This part goes hand in hand with the [single-clock-cycle MIPS CPU scheme](../cpu-1-clock-cycle), so if you haven't seen it yet I suggest you do it about now.
 
 We should know that the instructions we use in ASM MIPS are an abstraction that masks us writing sequences of bits; at a low level, in fact, an instruction is a sequence of bits that is fed to the CPU.
 
@@ -311,7 +311,7 @@ We can also see that MIPS instructions can be divided into 4 groups, based on ho
 Hence the existence of 3 encodings of MIPS instructions.
 I true: the numbers do not add up; the reason is that we can summarize those 4 behaviors in only 3 encodings.
 
-### R (Register) encoding.
+### Encoding R (Register)
 
 These instructions operate only on registers (e.g. `add`, `move`), and their format is this:
 
@@ -345,7 +345,7 @@ We have only two such instructions: `j` and `jal.`
 
 Well, we got that part out of the way.
 
-## Jumps.
+## Jumps
 
 We have just introduced them, and now we talk more about them.
 
@@ -354,7 +354,7 @@ As mentioned earlier, we have two types of jumps:
 - Conditional: **branch**;
 - Unconditioned: **jump**.
 
-### Unconditioned jumps.
+### Unconditioned jumps
 
 This type of jump is very simple. Basically, whenever an instruction of this type is encountered, we jump to the indicated destination.
 
@@ -478,7 +478,7 @@ endFor:
 
 Also here from the conceptual point of view we have to negate the initial condition.
 
-## Let's (again) take a break.
+## Let's (again) take a break
 
 Before killing ourselves with vectors, it pays to pause and do some exercises.
 Again, here are some ideas:
@@ -495,7 +495,7 @@ Again, here are some ideas:
   - If the character is uppercase *(same hint)*, add its *integer value* to a comulative sum;
   - When finished, print the comulative sum.
 
-## Vectors and Matrices.
+## Vectors and Matrices
 
 A vector is a data structure in which there is contiguous data of the same length. They are easily imagined in memory as a chopped segment.
 
@@ -548,7 +548,7 @@ M[x][y] <=> M + y*Y + x*sizeof(int)
 
 *You have [some examples](https://github.com/davquar/Architetture2/tree/master/1.%20Vectors) available for both vectors and matrices.*
 
-## Conclusions.
+## Conclusions
 
 MIPS is nice, isn't it?
 

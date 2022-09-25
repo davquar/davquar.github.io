@@ -139,10 +139,11 @@ Users **earn XP** and go up/down the table. A the end of the week:
 
 * The **1st** classified receives a special achievement.
 * Users in the **top-3** receive another achievement.
-* All users that classified before placement $K$ are **promoted** to the upper league.
+* Users in the top-$k$ are **promoted** to the upper league.
+* Users in the range $[k,q]$ remain in the league.
 * All other users are **relegated** in the lower league.
 
-For each league there is a fixed $K$.
+For each league there is a fixed $k, q$.
 
 ### Lives
 

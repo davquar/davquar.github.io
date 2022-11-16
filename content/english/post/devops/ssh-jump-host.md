@@ -42,7 +42,7 @@ Let's see the `man` pages:
 We can use jump hosts in this way:
 
 ```shell
-ssh jump final
+ssh -J jump final
 ```
 
 Where `jump` is the jump host and `final` is the final SSH server.
@@ -50,7 +50,7 @@ Where `jump` is the jump host and `final` is the final SSH server.
 For example:
 
 ```shell
-ssh user@myserveron22 user@myserveroncustomport
+ssh -J user@myserveron22 user@myserveroncustomport
 ```
 
 Since the only thing that the firewall sees is that I'm SSH-ing on port 22, it is allowed.

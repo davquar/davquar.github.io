@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: "NVIDIA drivers and Ubuntu: an horror story"
-date: 2022-11-21T09:00:00+02:00
+date: 2022-11-21T09:00:00+01:00
 categories: [Linux]
 tags: [desktop, nvidia, ubuntu]
 description: "A short horror story (with a nice ending) featuring Ubuntu and NVIDIA drivers."

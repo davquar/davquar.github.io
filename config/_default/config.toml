@@ -13,14 +13,11 @@ enableRobotsTXT = true
 #disqusShortname = ""
 
 # Syntax highlighting
-pygmentsUseClasses = true   
+pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 
-[markup]
-    [markup.goldmark]
-        [markup.goldmark.renderer]
-        unsafe=true
+markup.highlight.noClasses=false
 
 [taxonomies]
     category = "categories"

@@ -10,7 +10,9 @@ series:
   - Distributed Systems Theory
 ---
 
+{{< notice info >}}
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
+{{< /notice >}}
 
 In the last article we looked at the topic of **[consensus](../consensus/)** and understood why it is important complex; we looked at the concepts of safety and liveness, gave some examples, and then left off by saying that in the next article (this one) we would look at **Paxos**.
 

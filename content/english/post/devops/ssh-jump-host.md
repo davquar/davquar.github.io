@@ -5,11 +5,13 @@ date: 2022-11-15T12:00:00+02:00
 categories: [DevOps]
 tags: [til, linux, ssh]
 description: "The jump host is an option of the SSH client, that allows to use a third SSH server as \"proxy\" to access the final intended SSH server"
+series:
+  - TIL
 ---
 
-{{% notice info %}}
+{{< notice info >}}
 This post is part of the TIL (Today I Learned) series; they are small posts in which I write something that I learned recently, and found interesting enough to be shared in this format.
-{{% /notice %}}
+{{< /notice >}}
 
 Last week I needed to access a remote server to do some maintenance but I couldn't connect via SSH. The problem was that I had configured the **SSH server** to listen to a **custom port** and the network I was connected to had a very strict **firewall** configuration that blocked outbound SSH on ports different than 22.
 

@@ -8,9 +8,9 @@ description: For the past month I've been daily using Duolingo to learn German, 
 toc: true
 ---
 
-{{% notice info %}}
-After some time after writing this post, Duolingo heavily restructured the app, so some pictures may be outdated; the concepts are still valid, though.
-{{% /notice %}}
+{{< notice info >}}
+Some time after writing this post, Duolingo heavily restructured the app, so some pictures may be outdated; the concepts are still valid, though.
+{{< /notice >}}
 
 ## What is Gamification?
 

@@ -10,7 +10,9 @@ series:
   - Distributed Systems Theory
 ---
 
+{{< notice info >}}
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
+{{< /notice >}}
 
 In the context of distributed systems, **consensus** is a key issue. If we have *n* processes running the same protocol, consensus means that they all have to **agree on the same decision**.
 

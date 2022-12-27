@@ -10,7 +10,9 @@ series:
   - Distributed Systems Theory
 ---
 
+{{< notice info >}}
 This post has been written after attending the Distributed Systems course by prof. Alessandro Mei at Sapienza University of Rome; contents are heavily based on that course.
+{{< /notice >}}
 
 No need for much imagination: we can say that a **distributed system** is composed of a number of **processes** that use the same protocol to communicate with each other in order to solve a **common problem**.
 

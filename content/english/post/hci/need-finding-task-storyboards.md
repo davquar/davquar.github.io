@@ -8,9 +8,9 @@ description: Need finding is a fundamental activity in user interface design, be
 toc: true
 ---
 
-{{% notice info %}}
+{{< notice info >}}
 This post has been made after attending the Human-Computer Interaction course by prof. Emanuele Panizzi at Sapienza University of Rome; contents are heavily based on that course.
-{{% /notice %}}
+{{< /notice >}}
 
 As the name implies, **need finding** is the Human-Computer Interaction (**HCI**) activity aimed at knowing the **needs of the user**.
 

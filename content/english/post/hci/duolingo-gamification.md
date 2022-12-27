@@ -8,7 +8,9 @@ description: For the past month I've been daily using Duolingo to learn German, 
 toc: true
 ---
 
-A little disclaimer: here and at the end of the post there is [my invite link](https://invite.duolingo.com/BDHTZTB5CWWKTLKE3WVSP7Q244); if you register to Duolingo with my link I get 1 week free of the Super plan.
+{{% notice info %}}
+After some time after writing this post, Duolingo heavily restructured the app, so some pictures may be outdated; the concepts are still valid, though.
+{{% /notice %}}
 
 ## What is Gamification?
 
@@ -123,7 +125,7 @@ At the end, you win a **unique badge**.
 
 #### Challenges among friends
 
-You can [add friends](https://invite.duolingo.com/BDHTZTB5CWWKTLKE3WVSP7Q244) on Duolingo and **cooperate** to complete some challenges. For example, two friends can cooperate to jointly complete 30 perfect lessons (perfect == without errors) in 4 days.
+You can add friends on Duolingo and **cooperate** to complete some challenges. For example, two friends can cooperate to jointly complete 30 perfect lessons (perfect == without errors) in 4 days.
 
 When a user achieves something, **their friends get updated** on that and can cheer by pressing a button. Friends can also send **gifts** to each other, like some currency or *XP Potions*. Friends can also **encourage** each other.
 
@@ -237,7 +239,3 @@ This heavy gamification usage ultimately produces positive results, but also som
 * If you are competitive, it is easy to degenerate.
 * It is demotivating when a correct answer is wrongly not accepted.
 * If you miss one day because of some important reason and lose your streak, the negative effect will be too high, probably demotivating.
-
----
-
-[My invite link](https://invite.duolingo.com/BDHTZTB5CWWKTLKE3WVSP7Q244)

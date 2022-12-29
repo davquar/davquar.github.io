@@ -266,4 +266,4 @@ Something funny was discovering that the geo-location of some contacted IPs in M
 
 ![A funny disposition of some geolocated servers in Milan, in which a spiral shape is formed](/images/post/self-hosting/ntopng-fritzbox-monitoring/funny-ip-geolocation-milan.png)
 
-Did I find an hidden message? :-P
+Maybe someone there is an avid Debian fan; or perhaps a big Fibonacci fan :-D

@@ -6,11 +6,11 @@ aliases = ["about-me", "about-davide", "contact"]
 author = "Davide Quaranta"
 +++
 
-I am a Software Engineer and MSc student in Computer Science at Sapienza University of Rome.
+I am a **DevOps Engineer** at Thales DIS (Digital Identity & Security), and 2021/2022 MSc graduate in Computer Science at Sapienza University of Rome. My MSc thesis work was [published on IEEE](https://ieeexplore.ieee.org/document/10062138).
 
 My interests include:
 
-* Software Engineering.
+* Software engineering.
 * Cloud computing.
 * Distributed systems.
 * Security.
@@ -19,11 +19,11 @@ My interests include:
 * Typefaces.
 * Music.
 
-I am currently regularly working with the following tools and technologies:
+I am regularly working with the following tools and technologies:
 
-* Git, GitHub, GitLab.
+* Git.
+* GitLab, GitlabCI, GitHub.
 * Unix shell.
-* Docker.
+* Docker, Kubernetes.
 * Golang, Python.
 * JS/TS, HTML, CSS.
-

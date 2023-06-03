@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
-title: Can you print the configured environment variables in GitLab CI/CD pipelines?
-date: 2023-05-22T23:00:00+02:00
+title: Printing environment variables in GitLab CI/CD pipelines
+date: 2023-06-03T00:12:00+02:00
 categories: [DevOps]
 tags: [gilabci, cicd]
 description: "We had the need to print the environment variables used as parameters of GitLab CI/CD pipelines. Right now there is no official straightforward way to do it, so I resorted to a tiny custom way to do it."
@@ -15,10 +15,19 @@ So I eventually crafted a solution for that.
 
 ## The situation
 
-First of all, the anatomy of our `.gitlab-ci.yml` is the following:
+First of all, the head of our `.gitlab-ci.yml` is the following:
 
 ```yaml
-todo: todo
+variables:
+    VARIABLE_1:
+        value: "default value"
+        description: "This variable is used to do x"
+
+    VARIABLE_2:
+        value: ""
+        description: "This variable is used to do y"
+
+    ...
 ```
 
 Hence the following rules:
@@ -41,12 +50,12 @@ In other (totally not needed) words, let's define:
 - $A$: the set of all environment variables of the job.
 - $D$: the set of the default injected variables.
 
-Then, $X = A - D$ is the unknown set of the defined variables (what we want).
+Then, $X = A - D$ is the set of the defined variables (what we want).
 
 This idea looks perfect on paper, but doesn't work as expected, because you actually need two jobs to achieve it:
 
 - Job 1: calculate $A$ with `env`.
-- Job 2: calculate $D$ with `env` and `inherit:variables` at `false`.
+- Job 2: calculate $D$ with `env` and `inherit:variables` to `false`.
 
 And in each job you get different values for some default variables that GitLab injects, so a simple `diff` wouldn't work.
 
@@ -71,6 +80,28 @@ So the idea is:
 You can do this with a one-liner in a single job.
 
 ```yaml
-todo: todo
+print_variables:
+    stage: .pre
+    script:
+        - env | egrep $(yq '.variables | keys | ... comments = "" | map("^" + . + "=") | @csv' .gitlab-ci.yml | tr "," "|")
 ```
 
+Let's unpack it and explain it:
+
+1. First get the `env`.
+2. Pipe it to the result of a `grep`:
+   1. Parse the `variables` section of the YAML file.
+   2. Just keep the keys.
+   3. Remove comments.
+   4. Map every `VAR` to `^VAR=`, to create a regex to match any string that starts with `VAR` and ends with `=`.
+   5. Transform all to a CSV string (`VAR1,VAR2,...`).
+   6. Replace commas with pipes, to complete the regex (`VAR1|VAR2|...`).
+
+The result is just the portion of `env` which keys are defined in the `variables` section.
+
+## Conclusion
+
+Do I like this solution? Yes and no. Is it perfect? Nope.
+I would have preferred something given by GitLab.
+Maybe there is a more elegant solution but I don't know it.
+In any case, this solution works good, is fast, compact and yes, also elegant.

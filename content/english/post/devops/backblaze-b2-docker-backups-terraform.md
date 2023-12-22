@@ -30,8 +30,8 @@ From the problems directly follows the solution I adopted, which goal is to:
 
 In other words, I ended up making this:
 
-```text
-schema...
+```goat
+
 ```
 
 ## The setup
@@ -57,7 +57,7 @@ We want to have a proper access management, meaning that we need two different s
 * A broad set for Terraform operations.
 * A restricted set for docker-volume-backups operations.
 
-To achieve this, we can create two application keys. Let's respectively call them $K_t$ and $T_o$. We need to annotate the their `keyID` and `keyName`.
+To achieve this, we can create two application keys. Let's respectively call them $K_t$ and $K_o$. We need to annotate the their `keyID` and `keyName`.
 
 ## Terraform
 
@@ -88,6 +88,8 @@ The structure is:
 
 Since state files can contain secrets, we want to store them in a secure location; we'll use this bucket for it. Let's define it.
 
+Here we are going to use the $K_t$ application key (and ID) spoken before.
+
 #### `main.tf`
 ```hcl
 provider "b2" {
@@ -115,7 +117,7 @@ resource "random_string" "suffix" {
 
 Some observations:
 
-* Application keys are given, not hardcoded :)
+* Application keys are given, not hardcoded. 
 * Since B2 bucket names have a global scope, we are adding a random suffix.
 
 #### `variables.tf`
@@ -314,3 +316,5 @@ Some words:
 * The presence of `GPG_PASSPHRASE` is sufficient to tell the system to encrypt files with the given passphrase.
 * In the `AWS_*` section we are using the backups bucket, and pushing encrypted backups in the service name directory (`baikal` in this case).
 * Here we have the Jinja2 syntax `{{ something }}` just because I'm also using Ansible and storing these values with `ansible-vault`, but it's not in the scope of this post.
+
+Another important thing to say is that here we are are using the $K_o$ application key (and ID).

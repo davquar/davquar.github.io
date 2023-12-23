@@ -30,9 +30,7 @@ From the problems directly follows the solution I adopted, which goal is to:
 
 In other words, I ended up making this:
 
-```goat
-
-```
+![Schema of the solution made to automatically backup docker volumes](/images/post/devops/terraform-backblaze-b2-docker-volume-backup-schema.png)
 
 ## The setup
 

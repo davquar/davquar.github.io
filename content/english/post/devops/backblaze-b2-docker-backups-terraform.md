@@ -1,42 +1,42 @@
 ---
 author: Davide Quaranta
 title: Automatic Docker volume backups on Backblaze B2 with Terraform
-date: 2023-12-05T00:00:00+02:00
+date: 2024-01-02T00:00:00+02:00
 categories: [DevOps]
 tags: [docker,terraform,backblaze,infrastructure,iac]
 description: "Creating an automatic backup strategy for Docker volumes, on Backblaze B2 buckets managed with Terraform, with state files securely saved on B2 as well."
+toc: true
 ---
 
-On different machines I've been running a number of Docker containers, some of which have volumes that I'm interested in saving (and restoring, in case bad things happen).
+On different machines I've been running a number of Docker containers, some of which have volumes that I'm interested in backing up (and restoring, in case bad things happen).
 
 I've been using [`offen/docker-volume-backup`](https://github.com/offen/docker-volume-backup) for quite some time, which is a great project that allows to automatically backup Docker volumes to multiple places, including local filesystems, WebDAV, SSH remotes, S3, Dropbox.
 
-The problem is that I didn't really have a backup strategy, meaning that the only cool thing in my setup was this `offen/docker-volume-backup` thingy, which I configured to just backup locally; then periodically I used to manually copy the backups somewhere else for long-term storage. Backups were also not encrypted.
+The problem is that I didn't really have a backup strategy, meaning that the only cool thing in my setup was this `offen/docker-volume-backup` thingy, which I configured to just backup locally; then periodically I used to manually copy backup tars somewhere else for long-term storage. Backups were also not encrypted.
 
-The problems with that approach are:
+That approach is *okaysh* if you just want to *have* backups, but:
 
 * It feels like a chore.
-* Lack of standard.
-* Probability of human error.
-* Lack of encryption.
+* Lacks standardization.
+* May go wrong for human error.
+* It is a waste of time.
+* It is simply not good enough.
 
 ## The solution
 
-From the problems directly follows the solution I adopted, which goal is to:
+From the problems just stated, directly follows the solution I adopted, which goal is to:
 
-* Automate the long-term storage of backups.
-* Use a secure storage.
-* Use Infrastructure-as-Code (IaC) to define the storage properties.
+* **Automate** the long-term storage of backups.
+* Use a **secure storage**.
+* Use **Infrastructure-as-Code** (IaC) to define the storage properties.
 
-In other words, I ended up making this:
+On a high-level view, I ended up making this:
 
 ![Schema of the solution made to automatically backup docker volumes](/images/post/devops/terraform-backblaze-b2-docker-volume-backup-schema.png)
 
-## The setup
-
 I'm using:
 
-* offen/docker-volume-backups to:
+* [`offen/docker-volume-backup`](https://github.com/offen/docker-volume-backup) to:
   * Backup Docker volumes.
   * Encrypt them with PGP.
   * Push them to a Backblaze B2 bucket.
@@ -50,12 +50,12 @@ Let's see all.
 
 ## Backblaze application keys
 
-We want to have a proper access management, meaning that we need two different sets of privileges:
+Before even starting, we want to have a proper **access management**, meaning that we need two different sets of privileges:
 
-* A broad set for Terraform operations.
-* A restricted set for docker-volume-backups operations.
+* A **broad** set for **Terraform**.
+* A **restricted** set for **docker-volume-backups** operations.
 
-To achieve this, we can create two application keys. Let's respectively call them $K_t$ and $K_o$. We need to annotate the their `keyID` and `keyName`.
+To achieve this, we can create two **application keys** on Backblaze. Let's respectively call them $K_t$ and $K_o$. We need to annotate the their `keyID` and `keyName`.
 
 ## Terraform
 
@@ -86,7 +86,7 @@ The structure is:
 
 Since state files can contain secrets, we want to store them in a secure location; we'll use this bucket for it. Let's define it.
 
-Here we are going to use the $K_t$ application key (and ID) spoken before.
+Here we are going to use the $K_t$ application key (and ID) that we saw before.
 
 #### `main.tf`
 ```hcl
@@ -116,7 +116,7 @@ resource "random_string" "suffix" {
 Some observations:
 
 * Application keys are given, not hardcoded. 
-* Since B2 bucket names have a global scope, we are adding a random suffix.
+* Since B2 bucket names have a **global scope**, we are adding a random suffix.
 
 #### `variables.tf`
 
@@ -132,7 +132,7 @@ variable "application_key_id" {
 }
 ```
 
-The only observation is that our inputs are marked as sensitive, to mask them in Terraform plan/apply/destroy.
+The only observation is that our inputs are marked as **sensitive**, to mask them in Terraform plan/apply/destroy.
 
 #### `outputs.tf`
 
@@ -157,17 +157,19 @@ terraform {
 
 #### `backend.tf`
 
-This file will contain the configuration of the Terraform backend to use.
-Since the bucket where we are going to store our states is exactly this one, we'll keep this file empty for the moment, and populate it only after our bucket is created.
+This file will contain the configuration of the **Terraform backend** to use.
+Since the bucket where we are going to store our states is exactly this one, we'll keep this file empty for the moment, and populate it only **after** our bucket is created.
 
 ---
 
 Now we are free to `terraform plan` and `terraform apply`, after which we will have:
 
-* A new bucket; let's say it is called `tfstates-abc123cde0`.
-* A statefile in the local directory, called `terraform.tfstate`.
+* A **new bucket**; let's say it is called `tfstates-abc123cde0`.
+* A **statefile** in the local directory, called `terraform.tfstate`.
 
-Now we want to change the backend configuration to tell Terraform to use the newly created bucket as backend. Here is how we can do it:
+---
+
+Now we want to **change the backend configuration** to tell Terraform to use the newly created bucket as backend. Here is how we can do it:
 
 ```hcl
 terraform {
@@ -189,7 +191,7 @@ terraform {
 
 Some observations:
 
-* We are using the Amazon S3 backend because Backblaze B2's API is compatible with S3.
+* We are using the Amazon S3 backend because Backblaze B2's API is **compatible with S3**.
 * The `skip_x` parameters are necessary to work with B2.
 
 At this point, we can perform a `terraform init -migrate-state` to easily tell Terraform to use the new backend and to push the state to our nice bucket.
@@ -208,7 +210,7 @@ The way to do it is:
 
 #### `main.tf`
 
-Similarly, we are given the same keys, then creating a bucket with a random suffix
+Similarly, we are giving the same keys, then creating a bucket with a random suffix.
 
 ```hcl
 provider "b2" {
@@ -243,11 +245,11 @@ At this point, after `terraform plan` and `terraform apply` we will have everyth
 
 ## Automated backups
 
-Now we want to automatically perform encrypted backups and push them to our backups bucket.
+Now we want to **automatically perform encrypted backups** and push them to our backups **bucket**.
 
-Just to set some context, let's take a real-life example and say that we have a docker-compose file like this:
+Just to set some context, let's take a **real-life example** and say that we have a **docker-compose** file like this:
 
-```
+```yaml
 version: "2"
 
 services:
@@ -286,7 +288,7 @@ Specifically, we have:
 
 #### `.env_backup`
 
-Our backup configuration can look like:
+Our backup configuration may look like:
 
 ```bash
 BACKUP_CRON_EXPRESSION=0 3 * * *
@@ -314,5 +316,20 @@ Some words:
 * The presence of `GPG_PASSPHRASE` is sufficient to tell the system to encrypt files with the given passphrase.
 * In the `AWS_*` section we are using the backups bucket, and pushing encrypted backups in the service name directory (`baikal` in this case).
 * Here we have the Jinja2 syntax `{{ something }}` just because I'm also using Ansible and storing these values with `ansible-vault`, but it's not in the scope of this post.
+* We must manually track updates to our GPG passphrase. 
 
 Another important thing to say is that here we are are using the $K_o$ application key (and ID).
+
+## Conclusion
+
+At this point, our automated backup strategy is ready to operate. To summarize, now we have:
+
+* A bucket to store encrypted backups.
+* A bucket to store Terraform's statefiles.
+* A IaC definition of our buckets.
+* A backup container that periodically:
+  * Creates backups.
+  * Encrypts them with a GPG passphrase.
+  * Uploads them to our B2 bucket.
+
+Thanks for the read, bye 👋

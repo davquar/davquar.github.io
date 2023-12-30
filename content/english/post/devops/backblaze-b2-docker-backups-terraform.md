@@ -1,7 +1,7 @@
 ---
 author: Davide Quaranta
 title: Automatic Docker volume backups on Backblaze B2 with Terraform
-date: 2024-01-02T00:00:00+02:00
+date: 2023-12-30T13:00:00+02:00
 categories: [DevOps]
 tags: [docker,terraform,backblaze,infrastructure,iac]
 description: "Creating an automatic backup strategy for Docker volumes, on Backblaze B2 buckets managed with Terraform, with state files securely saved on B2 as well."

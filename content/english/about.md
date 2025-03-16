@@ -1,13 +1,14 @@
 +++
 title = "About"
 description = "Who is Davide?"
-date = "2019-02-28T00:00:00Z"
+date = "2025-03-16T00:00:00Z"
 aliases = ["about-me", "about-davide", "contact"]
 author = "Davide Quaranta"
 disableRelatedPosts = true
 +++
 
-I am a **Software Engineer** at evroc, and 2021/2022 MSc graduate in Computer Science at Sapienza University of Rome. My MSc thesis work has been [published on IEEE](https://ieeexplore.ieee.org/document/10062138).
+I am a **Software Engineer** at evroc, and 2021/2022 MSc graduate in Computer Science at Sapienza University of Rome.
+A compact version of my MSc thesis has been [published on IEEE](https://ieeexplore.ieee.org/document/10062138).
 
 My interests include:
 
@@ -17,7 +18,7 @@ My interests include:
 * Security.
 * Privacy.
 * Open source.
-* Music.
+* Music and cinema.
 * Typefaces.
 
 I am regularly working with the following tools and technologies:
